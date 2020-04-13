@@ -21,14 +21,3 @@ extern "C" {
 #include "pigtimes.h"
 }
 ```
-
-TODO
-----
-
-- write test file
-- write main source file and header file
-  - `bool pg_inited(void)` ... OK
-  - `void pg_init(void)`
-  - `PgNode`
-  - `PgNode pg_get()`(get the root node or other nodes)
-

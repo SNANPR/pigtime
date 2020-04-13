@@ -5,7 +5,7 @@ Test for pigtime
 How to test?
 ------------
 
-Use command `cmake . && make && make test` to test pigtime.
+Use command `cmake . && make && ./Tests` to test pigtime.
 
 Detail
 ------

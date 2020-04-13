@@ -58,3 +58,4 @@ Makefile
 CTestTestfile.cmake
 cmake_install.cmake
 Testing/
+Tests

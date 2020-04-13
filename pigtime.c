@@ -2,7 +2,9 @@
 
 // ---[ list of included files ]-----------------------------------------------
 #include <asm-generic/errno-base.h>
-#include <dirent.h>                    // check if directory exists
+#include <sys/stat.h>                  // support for create folder
+#include <sys/types.h>                 // support for create folder
+#include <stdio.h>                     // support for remove folder
 #include <errno.h>                     // compare with std errno
 
 
@@ -11,19 +13,42 @@ const char* PIGTIME_DIR_NAME = ".pigtime";
 
 // ---[ list of interface function ]-------------------------------------------
 
-// if there are not a pigtime database, then return false, or return true if
-// the database is already inited.
-bool pg_inited(void) {
-    DIR* dir = opendir(PIGTIME_DIR_NAME);
-    if (dir) {
-        // if the dir exists:
-        return true;
-    } else if (ENOENT == errno) {
-        // if do not exists:
-        return false;
+// if there are not a pigtime database, then return 0, or return 1 if the
+// database is already inited.
+int pg_is_inited(void) {
+    struct stat sb;
+    if (stat(PIGTIME_DIR_NAME, &sb) == 0 && S_ISDIR(sb.st_mode)) {
+        // if the dir exists: 
+        return 1;
     } else {
-        // [WARNING] if opendir() failed or some other reason.
-        return false;
+        // if do not exists: (or it is not a folder)
+        return 0;
+    }
+}
+
+// inited Pigtime database, (status code: return 1 means success, return 0 means
+// fail)
+int pg_init(void) {
+    // try to mkdir, if error => result: -1, if succese => result: 0.
+    int result = mkdir(PIGTIME_DIR_NAME, 0777);
+    if (result && errno != EEXIST) {
+        // https://stackoverflow.com/a/49028514/13031497
+        // if something is not right happend.
+        return 0;
+    } else {
+        // else succese
+        return 1;
+    }
+}
+
+// delete or clear Pigtime datebase. (status code: return 1 means success,
+// return 0 means fail)
+int pg_clear(void) {
+    if (remove(PIGTIME_DIR_NAME) == 0) {
+        // this means success
+        return 1;
+    } else {
+        return 0;
     }
 }
 

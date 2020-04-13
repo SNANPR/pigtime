@@ -15,8 +15,11 @@ Aim
 ``` txt
 [.] write test file
 [.] write main file and header file
-    [ ] int pg_init(void) => (code 1: success; code -1: fail)
+    [x] int pg_is_inited(void)
+    [.] int pg_init(void) => (code 1: success; code 0: fail)
             # initialize database
+    [.] int pg_clear(void) => (code 1: success; code 0: fail)
+            # delete(or clear) the datebase of Pigtime
     [ ] struct PgNode
             # node structure
     [ ] PgNode pg_get(const char* path) =>(code NULL: fail; code PgNode: success)
@@ -25,11 +28,11 @@ Aim
             # pg_read(pg_get("/peter.txt"), 't') -> const char*;
     [ ] const char* pg_read(PgNode node);
             # get the data of node
-    [ ] int pg_insert(PgNode node) => (code 1: success; code -1: fail)
+    [ ] int pg_insert(PgNode node) => (code 1: success; code 0: fail)
             # insert data node
-    [ ] int pg_build() => (code 1: success; code -1: fail)
+    [ ] int pg_build() => (code 1: success; code 0: fail)
             # build and store database as a series of files
-    [ ] int pg_load() => (code 1: success; code -1: fail)
+    [ ] int pg_load() => (code 1: success; code 0: fail)
             # load the existing database
 -------------------------------------------------------------------------------
 stand: ' ' -> '.' -> 'x'

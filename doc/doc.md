@@ -20,9 +20,13 @@ Aim
             # initialize database
     [.] int pg_clear(void) => (code 1: success; code 0: fail)
             # delete(or clear) the datebase of Pigtime
-    [ ] struct PgNode
+    [.] struct PgNode
             # node structure
-    [ ] PgNode pg_get(const char* path) =>(code NULL: fail; code PgNode: success)
+    [ ] int pg_empty(struct PgNode node) => (code 1: empty, code 0: is not
+                                             empty)
+            # check if the list of pgnode is empty
+    [ ] PgNode* pg_get(const char* path) =>(code NULL: fail; code PgNode*:
+                                            success)
             # get data node
             # pg_get("/") -> PgNode;
             # pg_read(pg_get("/peter.txt"), 't') -> const char*;

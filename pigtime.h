@@ -9,6 +9,12 @@
 // ---[ list of included files ]-----------------------------------------------
 
 
+// ---[ list of inner struct ]-------------------------------------------------
+
+// the base struct -- PgNode
+struct PgNode;
+
+
 // ---[ list of interface function ]-------------------------------------------
 
 // if there are not a pigtime database, then return false, or return true if
@@ -22,6 +28,9 @@ int pg_init(void);
 // delete or clear Pigtime datebase. (status code: return 1 means success,
 // return 0 means fail)
 int pg_clear(void);
+
+// get the PgNode* by simpty c-string
+PgNode* pg_get(const char* path);
 
 
 // ----------------------------------------------------------------------------

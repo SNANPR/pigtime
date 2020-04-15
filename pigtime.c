@@ -11,6 +11,23 @@
 // ---[ list of the const value ]----------------------------------------------
 const char* PIGTIME_DIR_NAME = ".pigtime";
 
+
+// ---[ list of inner struct ]-------------------------------------------------
+
+// the list of PgNode:
+// NULL <-[prev, node, next]-> ... <-[prev, node, next]-> NULL
+struct PgNodeList {
+    struct PgNode* node;
+    struct PgNodeList* prev;
+    struct PgNodeList* next;
+};
+
+// the base struct -- PgNode
+struct PgNode {
+    struct PgNodeList* list;
+};
+
+
 // ---[ list of interface function ]-------------------------------------------
 
 // if there are not a pigtime database, then return 0, or return 1 if the

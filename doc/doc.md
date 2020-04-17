@@ -31,6 +31,10 @@ Aim
             # delete(or clear) the datebase of Pigtime
     [.] struct PgNode
             # node structure
+    [.] struct PgNodeList
+            # list of pgnode
+    [ ] PgNodeList* pg_parse_list(PgNode* pgnode)
+            # return the list of PigTime
     [ ] int pg_empty(struct PgNode node) => (code 1: empty, code 0: is not
                                              empty)
             # check if the list of pgnode is empty

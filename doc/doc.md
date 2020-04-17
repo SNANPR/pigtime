@@ -14,6 +14,15 @@ Aim
 
 ``` txt
 [.] write test file
+    [.] test for pg_is_inited(void)
+    [.] test for pg_init(void)
+    [.] test for pg_clear(void)
+    [ ] test for PgNode - struct
+    [ ] test for pg_empty(void)
+    [ ] test for pg_get(const char* path)
+    [ ] test for pg_read(PgNode node)
+    [ ] test for pg_insert(PgNode node)
+    [ ] test for pg_load()
 [.] write main file and header file
     [x] int pg_is_inited(void)
     [.] int pg_init(void) => (code 1: success; code 0: fail)

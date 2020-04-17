@@ -29,6 +29,10 @@ int pg_init(void);
 // return 0 means fail)
 int pg_clear(void);
 
+// check if the PigTimes database is empty. (status code: return 1 means empty,
+// return 0 means fail)
+int pg_empty(void);
+
 // get the PgNode* by simpty c-string
 PgNode* pg_get(const char* path);
 

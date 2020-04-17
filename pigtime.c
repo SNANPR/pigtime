@@ -27,6 +27,17 @@ struct PgNode {
     struct PgNodeList* list;
 };
 
+// ---[ function for struct ]--------------------------------------------------
+
+// check if the PigList is empty
+int pglist_empty(struct PgNodeList* pgnodelist) {
+    if(pgnodelist->prev == NULL && pgnodelist->next == NULL) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 
 // ---[ list of interface function ]-------------------------------------------
 
@@ -69,4 +80,17 @@ int pg_clear(void) {
     }
 }
 
+// get the PgNode by path
+PgNode* pg_get(const char* path) {
+}
 
+// check if the Pigtime database is empty. (status code: return 1 means success,
+// return 0 means fail)
+int pg_empty() {
+    struct PgNodeList* root_list = pg_parse_list(pg_get("/"));
+    if(pglist_empty(root_list)) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
